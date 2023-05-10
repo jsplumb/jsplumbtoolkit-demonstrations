@@ -258,27 +258,6 @@ function copyAllRecursively (sourceDirectory, targetDirectory, options) {
      }));
  }
 
-/**
- * load an index file from the given directory, first searching for "index.ts" and then trying "index.js"
- * @param dir
- * @return {*}
- */
- function loadIndex(dir) {
-     let index
-     try {
-         index = readString(`${dir}/index.ts`)
-         return [index, "ts"]
-     } catch (e) {
-         try {
-             index = readString(`${dir}/index.js`)
-             return [index, "js"]
-         }
-         catch (ee) {
-             console.log(`No index file (js or ts) found in ${dir}`)
-         }
-     }
- }
- 
  exports.copyDirectory = copyDirectory;
  exports.clean = clean;
  exports.copy = copy;
