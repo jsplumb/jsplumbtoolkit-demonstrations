@@ -14,7 +14,6 @@ const vanillaDemonstrations = common.listCandidates(VANILLA_ROOT)
 const results = {}
 
 vanillaDemonstrations.forEach(v => {
-    console.log(v)
     _maybeBuildES5(v)
     _maybeBuildES6_TS(v, "es6")
     _maybeBuildES6_TS(v, "ts")
