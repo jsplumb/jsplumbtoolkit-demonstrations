@@ -1,0 +1,115 @@
+@import "../node_modules/@jsplumbtoolkit/browser-ui/css/jsplumbtoolkit.css";
+@import "../node_modules/@jsplumbtoolkit/browser-ui/css/jsplumbtoolkit-demo-support.css";
+@import "../node_modules/@jsplumbtoolkit/browser-ui/css/jsplumbtoolkit-connector-editors.css";
+@import "../node_modules/@jsplumbtoolkit/browser-ui/css/jsplumbtoolkit-dialogs.css";
+
+@import "./app.css";
+
+.jtk-surface {
+  height:500px;
+}
+
+.flowchart-object {
+  background-color: transparent;
+}
+
+app-demo {
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction: column;
+  position:relative;
+}
+
+app-flowchart {
+  width:100%;
+  display:flex;
+  position: relative;
+  height:100%;
+}
+
+@media screen and (max-width:850px) {
+  app-flowchart {
+    flex-direction: column;
+  }
+}
+
+jsplumb-surface {
+    flex:1;
+}
+
+jsplumb-surface > div {
+    width:100% !important;
+    height:100% !important;
+}
+
+jsplumb-controls {
+  position: absolute;
+  color: white;
+  top: -3px;
+  z-index: 1;
+  width: 150px;
+}
+
+jsplumb-miniview {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+nav {
+  background-color: #e0e0e0;
+  display:flex;
+}
+
+nav a, nav a:visited {
+  padding: 12px;
+  color: #000;
+  margin: 8px 10px 8px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+nav a.active {
+  background-color:white;
+}
+
+.jtk-miniview {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    z-index: 100;
+}
+
+.sidebar {
+  border-top:none;
+}
+
+/* styles for drag + drop */
+
+.jtk-surface.jtk-drag-drop-active {
+  outline:6px dotted #4ea758 !important;
+}
+
+.jtk-surface.jtk-drag-drop-hover {
+  outline: 6px solid #f7a45d !important;
+}
+
+svg.jtk-drag-drop-hover, svg.jtk-drag-drop-active {
+  outline:none !important;
+}
+
+svg.jtk-drag-drop-active path {
+  stroke:#4ea758;
+  stroke-width:3px;
+  stroke-dasharray:2 0 2 5;
+}
+
+svg.jtk-drag-drop-hover path {
+  stroke:#f7a45d;
+  stroke-width:4px;
+  stroke-dasharray:0;
+}
