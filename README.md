@@ -53,7 +53,7 @@ npm run build:svelte
 If you just want to build everything before you start, run:
 
 ```
-npm run build
+npm run build:all
 ```
 
 This will take several minutes to run.
