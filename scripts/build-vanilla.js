@@ -8,7 +8,7 @@ const g = require('./gatlight')
 const cp = require('child_process')
 const common = require('./build-common')
 
-const VANILLA_ROOT = './src/vanilla'
+const VANILLA_ROOT = './src'
 
 const vanillaDemonstrations = common.listCandidates(VANILLA_ROOT)
 const results = {}

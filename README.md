@@ -1,110 +1,142 @@
 # jsplumbtoolkit-demonstrations
 
-A set of demonstrations for the Toolkit edition. Previously these were all in separate repositories in the jsplumb-toolkit-demonstrations organisation. These demonstrations require a 6.x version of the Toolkit.
+The demonstrations in this repository are intended to provide a deep dive into specific features that the jsPlumb Toolkit offers. Each of the demonstrations is written in 'vanilla' JS, that is without using a library integration, but any functionality shown here can be used with the Toolkit's library integrations. 
 
-## Repository organisation
+These demonstrations require a 6.x version of the Toolkit.
 
-The demonstrations all reside inside the `src` directory, which itself is broken up into several subdirectories:
-
-- `angular` Angular demonstrations, supporting up to Angular 16 (although for 16+ you need to be using at least version 6.1.0 of the Toolkit). These demonstrations are of course all written in Typescript.
-
-- `react` React demonstrations, supporting React 16+.  Currently, the Database Visualizer and Skeleton React demonstrations are written in ES6, and the Flowchart Builder is written in Typescript.
-
-- `vue2` Vue 2 demonstrations. These are written in ES6.
-
-- `vue3` Vue 3 demonstrations. These are written in ES6.
-
-- `svelte` Svelte 3 demonstrations. These are written in ES6.
-
-- `vanilla` Demonstrations that do not use a library integration. Some of these demonstrations have examples in ES5, ES6 and Typescript, others are written only in Typescript or ES6.
-
-## Initialisation
-
-To get started, first run this command from the project root:
+## Setup
 
 ```
-npm run init
+npm i
+npm run build
 ```
 
-This will take a few minutes as it installs common dependencies and then builds the `vanilla` demonstrations. 
-
-If you wish to build the demonstrations for one of the library integrations, you can use one of these commands:
-
-```
-npm run build:angular
-```
-
-```
-npm run build:react
-```
-
-```
-npm run build:vue2
-```
-
-```
-npm run build:vue3
-```
-
-```
-npm run build:svelte
-```
-
-If you just want to build everything before you start, run:
-
-```
-npm run build:all
-```
-
-This will take several minutes to run.
-
-## Accessing demonstrations
-
-### Via embedded web server
-
-Run the embedded web server with this command:
+## Accessing the demonstrations
 
 ```
 npm run serve
 ```
 
-This uses the `http-server` package and will spin up a server on port 8080 by default. The landing page for this server will contain links to the various demonstrations, and will warn you if a specific set of demonstrations have not been built.
+The demonstrations will be served at [http://localhost:8080](http://localhost:8080).
 
-### Accessing individually
 
-The Angular, Vue 2/3 and React demonstrations are all stand-alone apps that can be run individually. Navigate to the appropriate demonstration directory and then:
+## Active Filtering
 
-#### Angular
+A demonstration of the [Active Filtering plugin](https://docs.jsplumbtoolkit.com/toolkit/6.x/lib/plugins-overview#active-filtering). Active filtering is a means of disabling targets when the user starts to drag a new edge, and can give your applications a nice boost in terms of their user friendliness and usability.
 
+## Layouts
+
+This demonstration is a test harness for the various layouts that the Toolkit offers.
+
+## Paths
+
+A demonstration of the Toolkit's support for path tracing.  
+
+
+## Porting to an app using a library integration
+
+The concepts in these demonstrations are all supported by the various library integrations, with the caveat that the way you pass configuration to the Toolkit may differ slightly from vanilla JS.
+
+### Angular
+
+The main thing to keep in mind with the Angular integration is that the `view` is passed in separately to the main render parameters. For instance in Vanilla js perhaps you have this:
+
+```javascript
+const mySurface = toolkit.render(someContainer, {
+    view:{
+        nodes:{
+            ...
+        },
+        edges:{
+            ...
+        }
+    },
+    layout:{
+        type:AbsoluteLayout.type
+    },
+    zoomToFit:true,
+    plugins:[
+        ...
+    ]
+})
 ```
-npm i
-ng serve
+
+whereas in Angular, when you're using the Surface component, you'll pass in the view and the render params separately:
+
+```html
+<jsplumb-surface surfaceId="mySurface" toolkitId="myToolkit" [view]="view" [renderParams]="renderParams"></jsplumb-surface>
 ```
 
-#### React
+so your `view` and `renderParams` will be defined separately in your component:
 
-```
-npm i
-npm run start
+```javascript
+export class MyComponent {
+    
+    view = {
+        nodes:{
+            someType:{
+                component:SomeNodeComponent
+            }
+        },
+        edges:{
+            ...
+        }
+    }
+    
+    renderParams = {
+        layout:{
+            type:AbsoluteLayout.type
+        },
+        zoomToFit:true,
+        plugins:[
+            ...
+        ]
+    }
+    
+}
+``` 
+
+#### Event listeners
+
+You may also see the occasional 'registerModelEvent' or a `modelEvents` render parameter in these demonstrations. We use these in vanilla JS where with a library integration you'd more likely bind an event listener in your template. For example say we have this in vanilla JS:
+
+```javascript
+const surface = toolkit.render(someElement, {
+    view:{
+        ...
+    },
+    modelEvents:[
+        {
+            event:EVENT_TAP,
+            selector:".node-delete",
+            callback:(event, eventTarget, info) => {
+                toolkit.removeNode(info.obj)
+            }
+        }
+    ]
+})
 ```
 
-NOTE: the `index.html` in the React demonstrations is configured to access the JS bundle at:
+Here, we're listening for a tap event on an element with class `node-delete`, and we delete the node in response. In Angular we'd do this instead:
 
-```
-<script src="dist/bundle.js"></script>
+```html
+<div class="some-component">
+    <div class="node-delete" (click)="deleteNode()">x</div>
+    <h1>other stuff</h1>
+</div>
+``` 
+
+```javascript
+export class SomeNodeComponent extends BaseNodeComponent {
+    
+    deleteNode() {
+        this.removeNode()   // `removeNode` is a helper method exposed on BaseNodeComponent         
+    }
+    
+}
 ```
 
-If you run the demonstration stand alone via npm you will need to alter the path to the bundle:
 
-```
-<script src="bundle.js"></script>
-```
 
-#### Vue 2 / Vue 3
-
-```
-npm i
-npm run serve
-```
 
 

@@ -5,13 +5,7 @@
   "main": "index.js",
   "scripts": {
     "init": "npm i;npm run build:vanilla",
-    "build:vanilla": "node ./scripts/build-vanilla.js",
-    "build:angular": "node ./scripts/build-angular.js",
-    "build:vue2": "node ./scripts/build-vue2.js",
-    "build:vue3": "node ./scripts/build-vue3.js",
-    "build:react": "node ./scripts/build-react.js",
-    "build:svelte": "node ./scripts/build-svelte.js",
-    "build:all": "npm run build:vanilla;npm run build:angular;npm run build:vue2;npm run build:vue3;npm run build:react;npm run build:svelte",
+    "build": "node ./scripts/build-vanilla.js",
     "serve": "npx http-server"
   },
   "repository": {
@@ -25,7 +19,7 @@
   },
   "homepage": "https://github.com/jsplumb/jsplumbtoolkit-demonstrations#readme",
   "dependencies": {
-    "@jsplumbtoolkit/browser-ui": "^6.0.0",
+    "@jsplumbtoolkit/browser-ui": "6.1.1",
     "@types/estree": "1.0.0",
     "http-server": "^14.1.1"
   }

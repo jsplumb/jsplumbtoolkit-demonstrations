@@ -1,7 +1,0 @@
-<div [style.width]="obj.w + 'px'" [style.height]="obj.h +'px'" class="flowchart-object flowchart-start">
-  <svg [attr.width]="obj.w" [attr.height]="obj.h">
-    <ellipse [attr.cx]="obj.w/2" [attr.cy]="obj.h/2" [attr.rx]="(obj.w/2) - 10" [attr.ry]="(obj.h/2) - 10" class="inner"/>
-  </svg>
-  <span>{{obj.text}}</span>
-    <div class="drag-start connect" data-jtk-source="true" data-jtk-source-port-type="source"></div>
-</div>

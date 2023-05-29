@@ -31,92 +31,28 @@
 
                     <div class="h5 mt-3">Initializing</div>
                     <p>
-                        If you're seeing this page in a web server then you've run `npm i` already. If you ran `npm run init`
-                        then you'll also be able to access the Vanilla demonstrations. Otherwise you'll want to run one of
-                        the build commands listed below.
+                        If you're seeing this page in a web server then you've run <code>npm i</code> already. If you
+                        ran <code>npm run init</code> then you'll also be able to access the demonstrations.
+                        Otherwise you'll want to run a build.
                     </p>
 
-                    <div class="h5 mt-2">Building the demonstrations</div>
+                    <div class="h5 mt-3">Building</div>
+
                     <p>
-                        You can choose to build all the demonstrations or just one set:
+                        <code>npm run build</code>
                     </p>
-                    <ul>
-                        <li>
-                            <strong>npm run build:vanilla</strong>
-                            <p>Builds the 'vanilla' demonstrations, that is all of the demonstrations that do not use a library integration.</p>
-                        </li>
-                        <li>
-                            <strong>npm run build:angular</strong>
-                            <p>Builds the demonstrations that use the Angular integration</p>
-                        </li>
-                        <li>
-                            <strong>npm run build:react</strong>
-                            <p>Builds the demonstrations that use the React integration.</p>
-                        </li>
-                        <li>
-                            <strong>npm run build:vue2</strong>
-                            <p>Builds the demonstrations that use the Vue 2 integration</p>
-                        </li>
-                        <li>
-                            <strong>npm run build:vue3</strong>
-                            <p>Builds the demonstrations that use the Vue 3 integration</p>
-                        </li>
-                        <li>
-                            <strong>npm run build:svelte</strong>
-                            <p>Builds the demonstrations that use the Svelte integration.</p>
-                        </li>
-                        <li>
-                            <strong>npm run build:all</strong>
-                            <p>Builds all of the demonstrations.  This may take a little while.</p>
-                        </li>
-                    </ul>
+                    <p>This will build all of the demonstrations. For demonstrations for which there is more than one
+                    version, we build the Typescript version</p>
 
                 </div>
 
                 <div class="d-flex flex-column p-5 col col-6" id="demo-list">
                     <div data-lib="vanilla">
-                        <div class="h5">Vanilla</div>
+                        <div class="h5">Demonstrations</div>
                         <div class="alert alert-danger">
-                            No vanilla demonstrations have been built! See instructions on the left hand side of this page.
+                            No demonstrations have been built! See instructions on the left hand side of this page.
                         </div>
                     </div>
-
-                    <div data-lib="angular">
-                        <div class="h5">Angular</div>
-                        <div class="alert alert-danger">
-                            No Angular demonstrations have been built! See instructions on the left hand side of this page.
-                        </div>
-                    </div>
-
-                    <div data-lib="vue2">
-                        <div class="h5">Vue2</div>
-                        <div class="alert alert-danger">
-                            No Vue 2 demonstrations have been built! See instructions on the left hand side of this page.
-                        </div>
-                    </div>
-
-                    <div data-lib="vue3">
-                        <div class="h5">Vue 3</div>
-                        <div class="alert alert-danger">
-                            No Vue 3 demonstrations have been built! See instructions on the left hand side of this page.
-                        </div>
-                    </div>
-
-                    <div data-lib="react">
-                        <div class="h5">React</div>
-                        <div class="alert alert-danger">
-                            No React demonstrations have been built! See instructions on the left hand side of this page.
-                        </div>
-                    </div>
-
-                    <div data-lib="svelte">
-                        <div class="h5">Svelte</div>
-                        <div class="alert alert-danger">
-                            No Svelte demonstrations have been built! See instructions on the left hand side of this page.
-                        </div>
-                    </div>
-
-
 
                 </div>
             </div>
@@ -125,7 +61,6 @@
         <script>
 
             (function() {
-                var categories = ['vanilla', 'angular', 'svelte', 'vue2', 'vue3', 'react'];
 
                 function _add(lib, name, target) {
                     var root = document.querySelector("[data-lib='" + lib + "']")
@@ -151,29 +86,8 @@
                 }
 
                 _oneSet("vanilla", function(name, version) {
-                    return `src/vanilla/${name}/${version}/index.html`
+                    return `src/${name}/${version}/index.html`
                 })
-
-                _oneSet("angular", function(name, version) {
-                    return `src/angular/${name}/dist/index.html`
-                })
-
-                _oneSet("react", function(name, version) {
-                    return `src/react/${name}/${version}/index.html`
-                })
-
-                _oneSet("vue2", function(name, version) {
-                    return `src/vue2/${name}/dist/index.html`
-                })
-
-                _oneSet("vue3", function(name, version) {
-                    return `src/vue3/${name}/dist/index.html`
-                })
-
-                _oneSet("svelte", function(name, version) {
-                    return `src/svelte/${name}/index.html`
-                })
-
 
 
             })();
